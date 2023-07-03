@@ -1,0 +1,77 @@
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.3em;
+  background-color: #ace5ac;
+  /* margin:75px; */
+  /* background:linear-gradient(#acb6e5,#86fde8); */
+  /* background-size: cover; */
+  /* background-image: url('images/mastermind.jpg'); */
+}
+
+main{
+  margin:100px;
+}
+
+
+h1{
+font-family:'Lobster', cursive;
+color: blue;
+text-align:center;
+font-weight: bold;
+line-height: 2;
+border:3px double black;
+}
+
+ul{
+  padding-left:50px;
+}
+
+p{
+text-align: justify;
+}
+
+/* Structure du navigateur */
+.li_navig{last-child a {
+  margin-right: 0;
+}}
+.li_navig{
+  display: inline;
+  padding:15px;
+}
+
+.a_navig{
+  outline: none;
+  text-decoration: none;
+  display: inline-block;
+  width: 17%;
+  /* margin-right: 0.75%; */
+  text-align: center;
+  line-height: 3;
+  color: blue;
+}
+
+.a_navig:link, .a_entete:visited, .a_entete:focus {
+  background: yellow;
+  border-radius: 20px;
+  box-shadow: 6px 6px 15px rgb(29,49,63);
+}
+
+.a_navig:hover {
+  background: #ffd900;
+}
+
+.a_navig:active {
+  background: hwb(44 0% 0%);
+  color: white;
+}
+
+/* Texte/Image sur deux colonnes */
+.row{
+  display:flex;
+  align-items: center;
+  margin-top:-20px
+}
+
+.column{
+  flex:50%;
+}
