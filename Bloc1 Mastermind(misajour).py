@@ -12,21 +12,21 @@ from random import randint
 couleurs=[0,1,2,3,4,5,6,7]
 proposition=[1,2,4,5]
 solution=[1,0,1,2]
-def nb_bien_places(proposition, solution):
+def nb_bien_places(proposition, solution):#renvoie le nbre de couleurs bien placées dans une proposition donnée#
     n=0
     for i in range(len(proposition)):
         if proposition[i]==solution[i]:
             n+=1
     return n
 
-def nb_bien_places_couleur(proposition, solution, couleur):
+def nb_bien_places_couleur(proposition, solution, couleur): #pour une couleur donnée et une proposition, donne le nombre de bien placées#
     n=0
     for i in range(len(proposition)):
         if (proposition[i]==couleur) and (solution[i]==couleur):
             n+=1
     return n
 
-def compte_occurences(liste):
+def compte_occurences(liste):#compte le nombre de fois qu'apparait chaque couleur dans une porposition donnée#
     l=[]
     for i in range(8):
         n=0
@@ -42,7 +42,7 @@ def min_int(x,y):
     else :
         return y
 
-def nb_couleurs_mal_placees(proposition, solution):
+def nb_couleurs_mal_placees(proposition, solution): # renvoie le nbre de couleurs mal placées d'une proposition donnée#
     occurence_proposition=compte_occurences(proposition)
     occurence_solution=compte_occurences(solution)
     nbr_couleurs_mp=0
@@ -53,13 +53,13 @@ def nb_couleurs_mal_placees(proposition, solution):
         nbr_couleurs_mp+=mal_place
     return nbr_couleurs_mp
 
-def generate_solution(nbr_pions):
+def generate_solution(nbr_pions): # génère une solution pour le mode 1 joueur#
     l=[]
     for i in range(nbr_pions):
         l.append(randint(0,7))
     return l
 
-def demander_entier():
+def demander_entier(): #Demande a l'utilisateur de saisir un entier#
     while True:
         try:
             entier = int(input())
@@ -73,7 +73,7 @@ def demander_entier():
 # Utilisation de la fonction
 
 
-def tentative(solution, nbr_pions):
+def tentative(solution, nbr_pions):#Faire une proposition pour le mode 1 joueur#
     print("Quelles couleurs proposez-vous ? (une couleur est un chiffre entre 0 et 7)")
     l=[]
     for i in range(nbr_pions):
@@ -85,7 +85,7 @@ def tentative(solution, nbr_pions):
     return l, a, b
 
 
-def tentative2j(solution,nbr_pions):
+def tentative2j(solution,nbr_pions):#Faire une proposition pour le mode deux joueur#
     print('Joueurs 2, quelles couleurs proposez vous?(une couleur est un chiffre entre 0 et 7)')
     l=[]
     for i in range(nbr_pions):
@@ -97,7 +97,7 @@ def tentative2j(solution,nbr_pions):
 
 
 
-def parti1joueur(nbr_pions):
+def parti1joueur(nbr_pions): #partie pour 1 joueur#
     la_solution=generate_solution(nbr_pions)
     liste_des_reponses=[]
     liste_des_pions=[]
@@ -123,10 +123,9 @@ def parti1joueur(nbr_pions):
     else: 
         print('perdu, voici la solution',la_solution)
 
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear') 
 
-def joueur1(nbr_pions):
+
+def joueur1(nbr_pions): #Demande au joueur 1 sa solution pour le mode 2 joueur#
     solution=[]
     print('Entrez',nbr_pions,'chiffres entre 0 et 7')
     for i in range(nbr_pions):
@@ -136,7 +135,7 @@ def joueur1(nbr_pions):
     print("\n"*20)
     return solution
     
-def parti2joueurs(nbr_pions):
+def parti2joueurs(nbr_pions): # partie pour deux joueur#
     solution=joueur1(nbr_pions)
     liste_des_reponses=[]
     liste_des_pions=[]
@@ -163,7 +162,7 @@ def parti2joueurs(nbr_pions):
         print('Bravo , joueur 2 a gagné')
     else: 
         print('Joueur 1 a gagné',solution)
-def nb_couleur(liste,couleur):
+def nb_couleur(liste,couleur): #Renvoie le nombre de fois ou une couleur apparait dans une proposition donnée#
     n=0
     for i in range(len(liste)):
         if liste[i]==couleur:
@@ -171,9 +170,7 @@ def nb_couleur(liste,couleur):
     return n
 
 
-
-
-def bien_place(proposition,solution):
+def bien_place(proposition,solution):#renvoie une liste contenant 1,-1 ou 0 selon que la couleur soit bien placée , mal placée ou peut etre mal placée, et deux liste sans les éléments bien placés#
     nb_etoile=[]
     solution1=[]
     proposition1=[]
@@ -192,7 +189,7 @@ def bien_place(proposition,solution):
     return nb_etoile, proposition1, solution1
 
 
-def deux_liste_dist(l1,l2):
+def deux_liste_dist(l1,l2):#renvoie 1 ou 0 selon que les éléments des deux listes sont mal placées ou non(les deux listes n'ont aucun élémets bien placées#
     nb_etoile=[]
     solution=[]
     for i in range(len(l1)):
@@ -217,7 +214,7 @@ def deux_liste_dist(l1,l2):
     return solution
 
   
-def parti_facile1j(proposition,solution):
+def parti_facile1j(proposition,solution): # renvoie une liste avec o * ou 8 selon que la couleur soit bien placée, mal placée ou pas dans la solution#
     sol=[]
     
     j=bien_place(proposition,solution)
@@ -243,7 +240,7 @@ def parti_facile1j(proposition,solution):
             
     return sol
 
-def parti_facile_1joueur(nbr_pions):
+def parti_facile_1joueur(nbr_pions):#simule une partie facile 1 joueur#
     liste_des_reponses=[]
     liste_des_pions=[]
     la_solution=generate_solution(nbr_pions)
@@ -271,7 +268,7 @@ def parti_facile_1joueur(nbr_pions):
         print('perdu, voici la solution',la_solution)
         
 
-def  parti_facile_2joueur(nbr_pions):
+def  parti_facile_2joueur(nbr_pions):#simule une partie facile 2 joueurs# 
     liste_des_reponses=[]
     liste_des_pions=[]
     la_solution=joueur1(nbr_pions)
