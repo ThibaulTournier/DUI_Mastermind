@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """
 Created on Tue Jun 27 21:06:06 2023
@@ -66,15 +67,15 @@ def demander_entier(): #Demande a l'utilisateur de saisir un entier#
             if 0 <= entier <= 7:
                 return entier
             else:
-                print("La valeur doit être comprise entre 0 et 7.")
+                print("La valeur doit être comprise entre 0 et 7. ")
         except ValueError:
-            print("Veuillez saisir un entier valide.")
+            print("Veuillez saisir un entier valide. ")
 
 # Utilisation de la fonction
 
 
 def tentative(solution, nbr_pions):#Faire une proposition pour le mode 1 joueur#
-    print("Quelles couleurs proposez-vous ? (une couleur est un chiffre entre 0 et 7)")
+    print("Quelles couleurs proposez-vous ? (une couleur est un chiffre entre 0 et 7) ")
     l=[]
     for i in range(nbr_pions):
         couleur = demander_entier()
@@ -85,8 +86,8 @@ def tentative(solution, nbr_pions):#Faire une proposition pour le mode 1 joueur#
     return l, a, b
 
 
-def tentative2j(solution,nbr_pions):#Faire une proposition pour le mode deux joueur#
-    print('Joueurs 2, quelles couleurs proposez vous?(une couleur est un chiffre entre 0 et 7)')
+def tentative2j(solution,nbr_pions,prenom):#Faire une proposition pour le mode deux joueur#
+    print(prenom,'quelles couleurs proposez vous?(une couleur est un chiffre entre 0 et 7) ')
     l=[]
     for i in range(nbr_pions):
         l.append(demander_entier())
@@ -125,24 +126,35 @@ def parti1joueur(nbr_pions): #partie pour 1 joueur#
 
 
 
-def joueur1(nbr_pions): #Demande au joueur 1 sa solution pour le mode 2 joueur#
+def joueur1(nbr_pions,prenom): #Demande au joueur 1 sa solution pour le mode 2 joueur#
     solution=[]
-    print('Entrez',nbr_pions,'chiffres entre 0 et 7')
+    print(prenom, 'Entrez',nbr_pions,'chiffres entre 0 et 7 ')
     for i in range(nbr_pions):
         
         couleur = demander_entier()
         solution.append(couleur)
     print("\n"*20)
     return solution
+
+def joueur1_deux_joueurs(nbr_pions,prenom): #Demande au joueur 1 sa solution pour le mode 2 joueur#
+    solution=[]
+    print(prenom,'entrez',nbr_pions,'chiffres entre 0 et 7 ')
+    for i in range(nbr_pions):
+        
+        couleur = demander_entier()
+        solution.append(couleur)
+    print("\n"*20)
+    return solution
+
     
-def parti2joueurs(nbr_pions): # partie pour deux joueur#
-    solution=joueur1(nbr_pions)
+def parti2joueurs(nbr_pions,prenom1,prenom2): # partie pour deux joueur#
+    solution=joueur1_deux_joueurs(nbr_pions,prenom1)
     liste_des_reponses=[]
     liste_des_pions=[]
     nb_tentative=0
     la_proposition=[]
     while (nb_tentative<10)and(la_proposition!=solution):
-        tentative1=tentative2j(solution,nbr_pions)
+        tentative1=tentative2j(solution,nbr_pions,prenom2)
         la_proposition=tentative1[0]
         liste_des_reponses.append(la_proposition)
         liste_des_pions.append([tentative1[1],tentative1[2]])
@@ -154,14 +166,14 @@ def parti2joueurs(nbr_pions): # partie pour deux joueur#
         if tentative1[1]+tentative1[2]==0:
             print('Rien ')
         nb_tentative+=1 
-    print("tentative ",nb_tentative+1) 
+    
     if tentative1[1]+tentative1[2]==0:
         print('Rien ')
-    nb_tentative+=1 
+     
     if la_proposition==solution:
-        print('Bravo , joueur 2 a gagné')
-    else: 
-        print('Joueur 1 a gagné',solution)
+        return 1,nb_tentative
+    else:
+        return 0, nb_tentative
 def nb_couleur(liste,couleur): #Renvoie le nombre de fois ou une couleur apparait dans une proposition donnée#
     n=0
     for i in range(len(liste)):
@@ -268,14 +280,14 @@ def parti_facile_1joueur(nbr_pions):#simule une partie facile 1 joueur#
         print('perdu, voici la solution',la_solution)
         
 
-def  parti_facile_2joueur(nbr_pions):#simule une partie facile 2 joueurs# 
+def  parti_facile_2joueur(nbr_pions,prenom1,prenom2):#simule une partie facile 2 joueurs# 
     liste_des_reponses=[]
     liste_des_pions=[]
-    la_solution=joueur1(nbr_pions)
+    la_solution=joueur1(nbr_pions,prenom1)
     nb_tentative=0
     la_proposition=[]
     while (nb_tentative<10)and(la_proposition!=la_solution):
-        tentative1=tentative(la_solution,nbr_pions)
+        tentative1=tentative2j(la_solution,nbr_pions,prenom2)
         la_proposition=tentative1[0]
         liste_des_reponses.append(la_proposition)
         liste_des_pions.append(parti_facile1j(la_proposition,la_solution))
@@ -291,44 +303,47 @@ def  parti_facile_2joueur(nbr_pions):#simule une partie facile 2 joueurs#
             print('Rien ')
         nb_tentative+=1 
     if la_proposition==la_solution:
-        print('Bravo , joueur 2 a gagné')
-    else: 
-        print('perdu, voici la solution',la_solution)
+        return 1,nb_tentative
+    else:
+        return 0, nb_tentative
 
 
 def nbr_joueur():
     while True:
         try: 
-            nb_joueur=int(input('Voulez vous jouer à 1 ou à 2 joueurs?'))
+            nb_joueur=int(input('Voulez vous jouer à 1 ou à 2 joueurs? '))
             if 1<=nb_joueur<=2:
                 return nb_joueur
             else: 
-                print("Veuillez saisir 1 ou 2")
+                print("Veuillez saisir 1 ou 2 ")
         except ValueError:
-            print("Veuillez saisir un entier valide.")            
+            print("Veuillez saisir un entier valide. ")            
 
              
 def nbr_jetons():
     while True:
         try: 
-            nb_jeton=int(input('Avec combien de jetons souhaitez vous jouer? Saisir un entier entre 0 et 7'))
-            if 0<=nb_jeton<=7:
+            nb_jeton=int(input('Avec combien de jetons souhaitez vous jouer? Saisir un entier entre 4 et 7 '))
+            if 4<=nb_jeton<=7:
                 return nb_jeton
             else: 
-                print("Veuillez saisir un entier entre 0 et 7")   
+                print("Veuillez saisir un entier entre 4 et 7 ")   
         except ValueError:
-            print("Veuillez saisir un entier valide.") 
-                
+            print("Veuillez saisir un entier valide.")
+def prenom():
+    a=input('Quel est le prénom du joueur 1? ')
+    b=input('Quel est le prénom du joueur 2? ')
+    return a,b
 def partif():
     while True:
         try: 
-            question=input('Voulez vous jouer une partie facile?')
+            question=input('Voulez vous jouer une partie facile? (tapez oui ou non ) ')
             if (question=='oui')or (question=='non'):
                 return question
             else: 
-                print("Veuillez répondre par oui ou non") 
+                print("Veuillez répondre par oui ou non ") 
         except ValueError:
-            print("Veuillez saisir un entier valide.") 
+            print("Veuillez saisir un entier valide.")                                           
 joueur=nbr_joueur()
 jetons=nbr_jetons()
 facile=partif()
@@ -338,7 +353,29 @@ if joueur==1:
     else:
         parti1joueur(jetons)
 else:
+    les_prenoms=prenom()
     if facile=='oui':
-        parti_facile_2joueur(jetons)
+        a=parti_facile_2joueur(jetons,les_prenoms[0],les_prenoms[1])
+        print("\n"*20)
+        print("Bravo",Les_prenoms[1],"Maintenant on échange les rôles")
+        b=parti_facile_2joueur(jetons,les_prenoms[1],les_prenoms[0])
     else:
-        parti2joueurs(jetons)
+        a=parti2joueurs(jetons,les_prenoms[0],les_prenoms[1])
+       
+        print("\n"*20)
+        print("Bravo", les_prenoms[1],"Maintenant on échange les rôles")
+        b=parti2joueurs(jetons,les_prenoms[1],les_prenoms[0])
+    if a[0]>b[0]:
+        print(les_prenoms[1],' a gagné la partie')
+    elif b[0]>a[0]:
+        print(les_prenoms[0],'a gagné la partie')
+    elif (a[0]==1)and(b[0]==1):
+        if a[1]<b[1]:
+            print(les_prenoms[1],'a gagné car a effectué',a[1],'tentatives contre',b[1],'pour',les_prenoms[0])
+        elif b[1]<a[1]:
+           print(les_prenoms[0],'a gagné car a effectué',b[1],'tentatives contre',a[1],'pour',les_prenoms[1]) 
+        else:
+            print('Match Nul')
+    else:
+        print('Match nul')
+        
