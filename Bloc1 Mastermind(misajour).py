@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 """
 Created on Tue Jun 27 21:06:06 2023
@@ -357,13 +356,20 @@ else:
     if facile=='oui':
         a=parti_facile_2joueur(jetons,les_prenoms[0],les_prenoms[1])
         print("\n"*20)
-        print("Bravo",Les_prenoms[1],"Maintenant on échange les rôles")
+        if a[0]==1:
+            print("Bravo",les_prenoms[1],"Maintenant on échange les rôles")
+        else:
+            print("Vous n'avez pas trouvé, maintenant on échange les rôles")
         b=parti_facile_2joueur(jetons,les_prenoms[1],les_prenoms[0])
     else:
         a=parti2joueurs(jetons,les_prenoms[0],les_prenoms[1])
        
         print("\n"*20)
-        print("Bravo", les_prenoms[1],"Maintenant on échange les rôles")
+        if a[0]==1:
+            print("Bravo",les_prenoms[1],"Maintenant on échange les rôles")
+        else:
+            print("Vous n'avez pas trouvé, maintenant on échange les rôles")
+        
         b=parti2joueurs(jetons,les_prenoms[1],les_prenoms[0])
     if a[0]>b[0]:
         print(les_prenoms[1],' a gagné la partie')
@@ -378,4 +384,3 @@ else:
             print('Match Nul')
     else:
         print('Match nul')
-        
