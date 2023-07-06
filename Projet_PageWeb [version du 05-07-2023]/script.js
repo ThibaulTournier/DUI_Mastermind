@@ -28,12 +28,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 case '1':
                     texte.innerHTML = "<h2>Débutant</h2> \
                     <p>Dans cette variante, le joueur qui a donné la combinaison place les pions blancs et noirs à la place exacte \
-                    qu'ils occupent dans la combinaison</p>";
+                    qu'ils occupent dans la combinaison.</p>";
                     break;
                 case '2':
                     texte.innerHTML = "<h2>Paramétrable</h2> \
                     <p>Dans cette variante, on peut paramétrer le nombre de couleurs que peut prendre la combinaison, \
-                    ainsi que le nombre de pions qui constituent la combinaison</p>";
+                    ainsi que le nombre de pions qui constituent la combinaison.</p>";
                     break;
             }
         });
