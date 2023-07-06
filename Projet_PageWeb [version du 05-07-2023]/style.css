@@ -114,3 +114,52 @@ td {
     text-align:right;  
     font-size: x-small;
   }
+  .menu {
+    position: fixed;
+    width: 100%;
+    height: 30vh;
+    top: 0;
+    background-color: #ace5ac;
+    z-index: 999; /* Cela garantit que le menu apparaîtra toujours au-dessus des autres éléments de la page */
+  }
+  
+  
+  .container_regles {
+    display: flex;
+    flex-direction: row;
+    height: 70vh; /* On réduit la hauteur du conteneur pour tenir compte du menu de navigation */
+    margin-top: 30vh; /* On ajoute une marge en haut pour éviter que le contenu ne soit masqué par le menu de navigation */
+  }
+  
+  .col-gauche {
+    flex: 1;
+    padding: 2em;
+  }
+  
+  .col-droite {
+    flex: 3;
+    padding: 2em;
+  }  
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
