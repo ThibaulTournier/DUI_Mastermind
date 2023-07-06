@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
     const texte = document.getElementById('texte');
     const contenuInitial = texte.innerHTML;
     
@@ -33,22 +50,5 @@ document.getElementById('secretForm').addEventListener('submit', function(event)
         window.location.href = 'page_secrete.html';
     } else {
         alert('Code secret incorrect');
-    }
-});
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    var acc = document.getElementsByClassName("accordion");
-    var i;
-
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-            } else {
-                panel.style.display = "block";
-            }
-        });
     }
 });
